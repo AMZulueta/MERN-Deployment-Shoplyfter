@@ -1,0 +1,146 @@
+body {
+  background-color: #eeeeee;
+}
+
+/* .App {
+  padding: 2rem;
+} */
+/* .container {
+  width: 1500px;
+  margin: 0 auto;
+} */
+
+.main-body {
+  display: flex;
+  width: 1500px;
+  margin: 0 auto;
+  background-color:rgb(179, 104, 145);
+  height: 600px;
+  margin-top: 20px;
+}
+
+h1, p, h2 {
+  color: rgb(49, 45, 47);     
+  margin-top: 15px;
+}
+
+.form-input {
+  color:rgb(79, 6, 6);
+  display: flex;
+  justify-content: space-between;
+  width: 480px;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 15px;
+  background-color: rgb(216, 204, 204);
+}
+
+.Add {
+  display: flex;
+  justify-content: center;
+}
+
+.add-btn, .delete-btn {
+  background-color: rgb(195, 61, 164);
+  color:  rgb(10, 10, 10);
+  padding: 10px 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+.table-list {
+  border: 2px solid black;
+  border-collapse: collapse;
+  box-shadow: 5px 5px 8px rgb(191, 185, 185);
+  font-size: 18px;
+  }
+  
+thead {
+  background-color: rgb(197, 187, 187);
+  text-align: center;
+  font-weight: bold;
+}
+
+td {
+  padding: 10px;
+  border-style: none solid;
+}
+
+.col {
+  width: 300px;
+}
+
+.tbody-row:nth-child(odd) {
+  background-color: rgb(232, 220, 220);
+}
+
+.main-details-box {
+  border: 3px solid black;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.main-contents {
+  display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 18px;
+}
+
+label {
+  width: 220px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.tabs {
+  display: flex;
+  justify-content: space-evenly;
+  }
+
+.tabs button {
+  background-color: lightgray;
+  border: none;
+  color: #888888;
+  cursor: pointer;
+  padding: 25px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.5s ease-out; 
+}
+
+.tabs button:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.tabs button:disabled {
+  background: linear-gradient(245.39deg, #FC65ED -35.14%, #0500FF 143.06%);
+  color: white;
+}
+
+.title {
+  color: black;
+  font-size: medium;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.content {
+  padding: 50px 80px;
+  background-color: white;
+  font-weight: 300;
+  line-height: 30px;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.content,
+button {
+  font-size: 15px;
+}
