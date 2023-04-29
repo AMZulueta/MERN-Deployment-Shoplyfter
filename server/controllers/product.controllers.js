@@ -3,7 +3,7 @@ const Product = require('../models/product.models');
 module.exports = ({
 // CREATE (POST)
     createProduct: (req, res) => {
-        Product.create(req.body, {new: true, runValidators: true})
+        Product.create(req.body)
             .then((newProduct) => res.json(newProduct))
             .catch((err) => res.status(400).json(err))
     }, 

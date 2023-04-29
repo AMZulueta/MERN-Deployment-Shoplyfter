@@ -2,14 +2,6 @@ body {
   background-color: #eeeeee;
 }
 
-/* .App {
-  padding: 2rem;
-} */
-/* .container {
-  width: 1500px;
-  margin: 0 auto;
-} */
-
 .main-body {
   display: flex;
   width: 1500px;
@@ -51,32 +43,6 @@ h1, p, h2 {
   border-radius: 10px;
 }
 
-.table-list {
-  border: 2px solid black;
-  border-collapse: collapse;
-  box-shadow: 5px 5px 8px rgb(191, 185, 185);
-  font-size: 18px;
-  }
-  
-thead {
-  background-color: rgb(197, 187, 187);
-  text-align: center;
-  font-weight: bold;
-}
-
-td {
-  padding: 10px;
-  border-style: none solid;
-}
-
-.col {
-  width: 300px;
-}
-
-.tbody-row:nth-child(odd) {
-  background-color: rgb(232, 220, 220);
-}
-
 .main-details-box {
   border: 3px solid black;
   text-align: left;
@@ -95,7 +61,6 @@ label {
   font-size: 18px;
   font-weight: bold;
 }
-
 
 .tabs {
   display: flex;
@@ -138,9 +103,4 @@ label {
   line-height: 30px;
   font-size: 16px;
   text-align: justify;
-}
-
-.content,
-button {
-  font-size: 15px;
 }

@@ -1,37 +1,138 @@
 import axios from "axios";
-import { useState, useEffect } from "react"
-import { Stack, 
-        Box,
-        Typography,
-        Button,
-        ButtonGroup,
+import React, { useState, useEffect } from "react"
+import {
         IconButton,
-        AppBar,
-        Toolbar,
-        Menu,
-        MenuItem,
-        TableContainer, 
-        Table, 
-        TableHead, 
-        TableRow, 
-        TableCell, 
-        TableBody } from "@mui/material";
-import Logo from '../ShopLogo.jpeg';
-import { Container } from "@mui/system";
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import EmailIcon from '@mui/icons-material/Email';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+        Button} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import styled from "styled-components"
+import Announcement from "./Announcement";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 
+const Container = styled.div``;
+const Wrapper = styled.div`
+    padding: 20px;
+`;
+
+const Title = styled.h1`
+    font-weight: 300;
+    text-align: center;
+
+`;
+
+const Top = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+`;
+
+const TopButton = styled.button`
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: ${(props) => props.type === "filled" && "none"};
+    background-color: ${(props)=> props.type === "filled" ? "black" : "transparent"};
+    color: ${(props) => props.type === "filled" && "white"};
+`;
+
+const TopTexts = styled.div`
+
+`;
+
+const TopText = styled.span`
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0px 10px;
+    
+`;
+
+const Bottom = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const Info = styled.div`
+    flex: 3;
+`;
+
+const Product = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+const ProductDetail = styled.div`
+    flex: 2;
+    display: flex;
+`;
+
+const Image = styled.img`
+    width: 200px;
+    margin-top: 10px;
+`;
+
+const Details = styled.div`
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+`;
+const ProductName = styled.span``;
+const ProductDesc = styled.span`
+
+`;
+
+const PriceDetail = styled.div`
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+const ProductAmountContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const ProductAmount = styled.div`
+    font-size: 18px;
+    margin: 5px;
+`;
+
+const ProductPrice = styled.div`
+    font-size: 20px;
+    font-weight: 200;
+`;
+
+const Summary = styled.div`
+    flex: 1;
+    border: 0.5px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    height: 50vh;
+`;
+
+const SummaryTitle = styled.h1`
+    font-weight: 200;
+`;
+
+const SummaryItem = styled.div`
+    margin: 30px 0px;
+    display: flex;
+    justify-content: space-between;
+`;
+const SummaryItemText = styled.span`
+    
+`;
+
+const SummaryItemPrice = styled.span`
+    
+`;
 export const Cart = (props) => {
 
 const [ cart, setCart ] = useState([]);
-// const navigate = Navigate();
 
     useEffect(() => {
         let cart = JSON.parse(localStorage.getItem('myCart'));
@@ -51,9 +152,17 @@ const [ cart, setCart ] = useState([]);
             .catch((err) => console.log("Something went wrong", err))
     }
 
+
     function ccyFormat(num) {
         return `${num.toFixed(2)}`;
     }
+
+
+    // function total(productId) {
+    //     return productId.map(({price}) => price)
+    // }
+
+    // const cartItem = total(cart);
 
     function subtotal(items) {
         return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
@@ -70,136 +179,67 @@ const [ cart, setCart ] = useState([]);
         setAnchorEl(null)
     };
 
+
+
     return (
-        <Stack>
-            <Box sx={{ display: 'block', bgcolor: 'primary.light', 
-        }}>
-            <Typography variant ='subtitle1'  sx={{
-                textAlign: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                fontStyle: 'normal',
-                letterSpacing: 2
-            }}
-            >
-                Shopping is Life!
-                50% DP within 5 days. 
-                50% remaining upon arrival to PH.
-            </Typography>
-            <Box sx={{ display: 'block', textAlign: 'right' }}>
-                <ButtonGroup variant='text' aria-label='alignment button group'>
-                    <IconButton size="large" aria-label="search" color="inherit">
-                        <SearchIcon />
-                    </IconButton>
-                    <IconButton size="large" aria-label="search" color="inherit">
-                        <AccountCircleOutlinedIcon />
-                    </IconButton>
-                    <IconButton size="large" aria-label="search" color="inherit" href='/cart'>
-                        <ShoppingBagOutlinedIcon />
-                    </IconButton>
-                </ButtonGroup>
-            </Box>
-        </Box>
-        {/* // Start of NavBar */}
-        <AppBar position='static' sx={{bgcolor: 'white'}}>
-            <Container maxWidth='m'>
-                <Toolbar disableGutters> 
-                    <img src={Logo} alt="logo-icon" width='100px' height='60px'/>
-                <Typography variant='h6' noWrap component='a' href='/' sx={{
-                    mr: 4,
-                    display: { xs: 'none', md: 'flex' },
-                    fontFamily: 'monospace',
-                    fontWeight: 700,
-                    letterSpacing: '.2rem',
-                    color: 'inherit',
-                    textDecoration: 'none'
-                }}
-                >
-                    Hello ShopLyft3rs
-                </Typography>
-                <Box sx={{ flexGrow: 10, display: { xs: 'none', md: 'flex' }, ml: 55, p: 6 }}>
-                    <Button color='inherit' href='/'>Home</Button>
-                    <Button 
-                        color='inherit' 
-                        id='product-category-button' 
-                        onClick={handleClick} 
-                        aria-controls={open ? 'product-category-menu' : undefined}
-                        aria-haspopup='true'
-                        aria-expanded={open ? 'true' : undefined}
-                        endIcon={<KeyboardArrowDownIcon />}
-                    >
-                        Product Category
-                    </Button>
-                    <Button color='inherit'>About Us</Button>
-                </Box>
-                <Menu 
-                    id='product-category-menu' 
-                    anchorEl={anchorEl} 
-                    open={open}
-                    MenuListProps={{'aria-labelledby' : 'product-category-button'}}
-                    onClose={handleClose}
-                    anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
-                    transformOrigin={{vertical: 'top', horizontal: 'right'}}
-                >
-                    <MenuItem onClick={handleClose}>Bags</MenuItem>
-                    <MenuItem onClick={handleClose}>Accesories</MenuItem>
-                    <MenuItem onClick={handleClose} href='/product'>All Products</MenuItem>
-                </Menu>
-                
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
-                        <IconButton area-aria-label='facebook' size='medium' href='https://www.facebook.com/ShopLyft3rs'>
-                            <FacebookIcon/>
-                        </IconButton>
-                        <IconButton area-aria-label='instagram' href='https://www.instagram.com/shoplyft3rs/'>
-                            <InstagramIcon/>
-                        </IconButton>
-                        <IconButton area-aria-label='email' href='mailto:shoplyft3rs@gmail.com'>
-                            <EmailIcon/>
-                        </IconButton>
-                    </Box>
-                </Toolbar>
-            </Container>
-        </AppBar>
-
-            <TableContainer sx={{display: 'flex', p:10}}>
-                <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-                    <TableHead>
-                        <TableRow>
-                        <TableCell align="center" colSpan={3}>
-                            Order Details
-                        </TableCell>
-                        <TableCell align="right">Price</TableCell>
-                        </TableRow>
-                        <TableRow>
-                        <TableCell>Product Title</TableCell>
-                        <TableCell align="right">Description</TableCell>
-                        <TableCell align="right">Remove</TableCell>
-                        <TableCell align="right">Sum</TableCell> 
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
+            <Container>
+                <Announcement />
+                <Navbar />
+                <Wrapper>
+                    <Title>Your Bag</Title>
+                    <Top>
+                        <TopButton>Continue Shopping</TopButton>
+                        <TopTexts>   
+                            <TopText>Shopping Bag(2)</TopText>
+                            <TopText>Wishlist(0)</TopText>
+                        </TopTexts> 
+                        <TopButton type="filled">Checkout</TopButton>
+                    </Top>
+                    <Bottom>
+                        <Info>
                         { cart.map((product, index) => (
-                        <TableRow key={index}>
-                            <TableCell>{product.title}</TableCell>
-                            <TableCell align="right">{product.description}</TableCell>
-                            <TableCell align="right">
-                                <IconButton onClick={() => deleteProduct(product._id)}>
-                                    <DeleteIcon />
-                                </IconButton>
-                            </TableCell>
-                            <TableCell align="right">{ccyFormat(product.price)}</TableCell>
-                        </TableRow>
+                            <Product>
+                                <ProductDetail key={index}>
+                                    <Image alt="" src={product.image} />
+                                    <Details>
+                                        <ProductName><b>Product:</b> {product.title}</ProductName>
+                                        <ProductDesc><b>Desc:</b> {product.description}</ProductDesc>
+                                    </Details>
+                                </ProductDetail>
+                                <PriceDetail> 
+                                    <ProductAmountContainer>
+                                        {/* <AddIcon />
+                                        <ProductAmount>1</ProductAmount>
+                                        <RemoveIcon /> */}
+                                        <IconButton href='/cart' onClick={() => deleteProduct(product._id)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </ProductAmountContainer>
+                                    <ProductPrice> PHP {product.price}</ProductPrice>
+                                </PriceDetail>
+                            </Product>
+                            ))}
+                        </Info>
+                        { cart.map((product, index) => (
+                        <Summary>
+                            <SummaryTitle>ORDER SUMMMARY</SummaryTitle>
+                            <SummaryItem>    
+                                <SummaryItemText>Shipping</SummaryItemText>
+                            </SummaryItem>
+                            <SummaryItem>
+                                <SummaryItemText>Total</SummaryItemText>
+                                <SummaryItemPrice>{ccyFormat(product.price)}</SummaryItemPrice>
+                            </SummaryItem>
+                            <SummaryItem>
+                                <SummaryItemText>Total</SummaryItemText>
+                                <SummaryItemPrice>{ccyFormat(invoiceSubtotal)}</SummaryItemPrice>
+                            </SummaryItem>
+                            <Button variant="contained">Checkout</Button>
+                        </Summary>
                         ))}
-
-                        <TableRow>
-                            <TableCell rowSpan={3} />
-                            <TableCell colSpan={2}>Subtotal</TableCell>
-                            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
-                        </TableRow>
-
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Stack>
-    )
-}
+                    </Bottom>
+                </Wrapper>
+                <Footer />
+        </Container>                        
+    );
+};
